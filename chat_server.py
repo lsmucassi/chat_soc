@@ -22,7 +22,6 @@ Port = int(sys.argv[2])
 """ Binds theserver to an entered IP  address and at the specified port number
 The client must be aware of thuis parameters
 """
-
 srever,bind((IP_address, Port))
 
 """
@@ -43,6 +42,7 @@ def clientThread(conn, addr):
             if message:
                 """prints the message and address of the user"""
                 print "<" + addr [0] + "> " + message
+
                 # calls broadcast function to send message
                 mess_to_send = "<" + addr[0] + "> " + message
                 broadcast(mess_to_send, conn)
@@ -50,4 +50,23 @@ def clientThread(conn, addr):
             else:
                 """message may not have content if the connection is broken,
                 in this case remove connectiopn"""
+                remove(conn)
 
+        except:
+            continue
+
+"""broadcast the message to all client who are bot the same object as the sender"""
+def broadcast(message, connection):
+    for clients in list_of_clients:
+        if clients != connection:
+            try:
+                clients.send(message)
+            except:
+                clients.close()
+
+                #remove client if connection is broken
+                remove(clients)
+
+"""romover function"""
+def remove(connection):
+    if (connection)
