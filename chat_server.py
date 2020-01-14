@@ -75,5 +75,16 @@ def remove(connection):
 while True:
     """accepts a connection requested"""
     conn, addr = server.accept()
-    ""
+
+    """Maintains the list of clients"""
+    list_of_clients.append(conn)
+
+    # prints addr of the user recently connected
+    print addr[0] + " connected"
+
+    # created  a thread for users that connect
+    start_new_thread(clientThread, (conn addr))
+
+conn.close()
+server.close()
 
