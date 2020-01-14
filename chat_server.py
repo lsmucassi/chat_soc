@@ -5,8 +5,8 @@ from thread import *
 
 # AF_INET - Address Domain of the socket
 # SOCK_STREAM - TYpe of socket (continuos flow of data read)
-sever = socket.socket(socket.AF_INET, socket.SOCK_STREAM )
-sever.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM )
+server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # checks if sufficient arguments were provided
 if len(sys.argv) != 3:
@@ -14,7 +14,7 @@ if len(sys.argv) != 3:
     exit()
 
 # takes the first argument from cmd prompt
-IP_address = str(sys,argv[1])
+IP_address = str(sys.argv[1])
 
 # takes seconf argument from cmd prompt
 Port = int(sys.argv[2])
@@ -22,13 +22,13 @@ Port = int(sys.argv[2])
 """ Binds theserver to an entered IP  address and at the specified port number
 The client must be aware of thuis parameters
 """
-srever,bind((IP_address, Port))
+server.bind((IP_address, Port))
 
 """
 listen for 100 actiove connections. this number can be increased as per convinient
 
 """
-sever.listen(100)
+server.listen(100)
 
 list_of_clients = []
 
@@ -83,7 +83,7 @@ while True:
     print addr[0] + " connected"
 
     # created  a thread for users that connect
-    start_new_thread(clientThread, (conn addr))
+    start_new_thread(clientThread, (conn, addr))
 
 conn.close()
 server.close()
