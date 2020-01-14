@@ -34,4 +34,5 @@ To run the script, simply download it, and save it at a convenient location on y
    For example, */
    
 $ python chat_server.py 192.168.55.13 8081
+
 $ python client.py 192.168.55.13 8081
