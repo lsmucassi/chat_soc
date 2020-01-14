@@ -67,6 +67,13 @@ def broadcast(message, connection):
                 #remove client if connection is broken
                 remove(clients)
 
-"""romover function"""
+"""romover function - removes an object from the list"""
 def remove(connection):
-    if (connection)
+    if connection in list_of_clients:
+        list_of_clients.remove(connection)
+
+while True:
+    """accepts a connection requested"""
+    conn, addr = server.accept()
+    ""
+
